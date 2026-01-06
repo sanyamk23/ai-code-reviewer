@@ -1,6 +1,6 @@
 {
     "name": "ai-code-reviewer",
-    "displayName": "Pure Python AI Code Reviewer",
+    "displayName": "Python AI Code Reviewer",
     "description": "Lightning-fast AI code review with Pure Python intelligence - No API keys, No LLMs, 100% offline, zero cost",
     "version": "1.0.0",
     "license": "MIT",
