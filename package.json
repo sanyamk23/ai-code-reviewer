@@ -1,0 +1,170 @@
+{
+    "name": "ai-code-reviewer",
+    "displayName": "Pure Python AI Code Reviewer",
+    "description": "Lightning-fast AI code review with Pure Python intelligence - No API keys, No LLMs, 100% offline, zero cost",
+    "version": "1.0.0",
+    "license": "MIT",
+    "publisher": "sanyam-kumat",
+    "author": {
+        "name": "Sanyam Kumat"
+    },
+    "keywords": [
+        "ai",
+        "code-review",
+        "python",
+        "linter",
+        "copilot",
+        "offline",
+        "pure-python",
+        "intelligence",
+        "completion",
+        "suggestions"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/sanyamk23/ai-code-reviewer"
+    },
+    "bugs": {
+        "url": "https://github.com/sanyamk23/ai-code-reviewer/issues"
+    },
+    "homepage": "https://github.com/sanyamk23/ai-code-reviewer#readme",
+    "engines": {
+        "vscode": "^1.74.0"
+    },
+    "categories": [
+        "Linters",
+        "Machine Learning",
+        "Programming Languages",
+        "Other"
+    ],
+    "activationEvents": [
+        "onLanguage:python"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "aiCodeReviewer.analyzeFile",
+                "title": "AI Code Review: Analyze Current File",
+                "icon": "$(search)"
+            },
+            {
+                "command": "aiCodeReviewer.analyzeWorkspace",
+                "title": "AI Code Review: Analyze Workspace",
+                "icon": "$(folder)"
+            },
+            {
+                "command": "aiCodeReviewer.showMetrics",
+                "title": "AI Code Review: Show Code Metrics",
+                "icon": "$(graph)"
+            },
+            {
+                "command": "aiCodeReviewer.enableAI",
+                "title": "AI Code Review: Setup AI Features",
+                "icon": "$(robot)"
+            },
+            {
+                "command": "aiCodeReviewer.showSuggestionExplanation",
+                "title": "AI Code Review: Show Suggestion Explanation"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "when": "resourceLangId == python",
+                    "command": "aiCodeReviewer.analyzeFile",
+                    "group": "aiCodeReviewer"
+                },
+                {
+                    "when": "resourceLangId == python",
+                    "command": "aiCodeReviewer.showMetrics",
+                    "group": "aiCodeReviewer"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "when": "resourceLangId == python",
+                    "command": "aiCodeReviewer.analyzeFile",
+                    "group": "aiCodeReviewer"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "AI Code Reviewer",
+            "properties": {
+                "aiCodeReviewer.serverUrl": {
+                    "type": "string",
+                    "default": "http://localhost:5001",
+                    "description": "URL of the Python analyzer server"
+                },
+                "aiCodeReviewer.enableRealTime": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable real-time analysis on file changes"
+                },
+                "aiCodeReviewer.analyzeOnSave": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Analyze files when saved"
+                },
+                "aiCodeReviewer.debounceMs": {
+                    "type": "number",
+                    "default": 1000,
+                    "description": "Debounce time in milliseconds for real-time analysis"
+                },
+                "aiCodeReviewer.enableAISuggestions": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable AI-powered code suggestions and completions"
+                },
+                "aiCodeReviewer.enableSecurityAnalysis": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable security vulnerability detection"
+                },
+                "aiCodeReviewer.enablePerformanceAnalysis": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable performance optimization suggestions"
+                },
+                "aiCodeReviewer.enableStyleAnalysis": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable code style and formatting analysis"
+                },
+                "aiCodeReviewer.maxSuggestions": {
+                    "type": "number",
+                    "default": 5,
+                    "description": "Maximum number of AI suggestions to show"
+                },
+                "aiCodeReviewer.enableInlineCompletions": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable inline AI completions (ghost text like Copilot)"
+                },
+                "aiCodeReviewer.inlineCompletionDelay": {
+                    "type": "number",
+                    "default": 500,
+                    "description": "Delay in milliseconds before showing inline completions"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "lint": "eslint src --ext ts",
+        "test": "npm run compile && node ./out/test/runTest.js",
+        "package": "vsce package",
+        "publish": "vsce publish"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.74.0",
+        "@types/node": "16.x",
+        "typescript": "^4.9.4"
+    },
+    "dependencies": {
+        "axios": "^1.6.0"
+    }
+}
