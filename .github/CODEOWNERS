@@ -1,0 +1,17 @@
+# Global code owners
+* @sanyamk23
+
+# Python server code
+/python-server/ @sanyamk23
+
+# VS Code extension
+/src/ @sanyamk23
+
+# Documentation
+*.md @sanyamk23
+/docs/ @sanyamk23
+
+# Configuration files
+/.github/ @sanyamk23
+package.json @sanyamk23
+tsconfig.json @sanyamk23
