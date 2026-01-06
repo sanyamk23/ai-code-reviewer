@@ -2,6 +2,7 @@
 out/
 dist/
 *.vsix
+!releases/*.vsix
 
 # Node.js Dependencies
 node_modules/
