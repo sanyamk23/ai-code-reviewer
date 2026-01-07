@@ -1,6 +1,6 @@
 {
-    "name": "ai-code-reviewer",
-    "displayName": "Python AI Code Reviewer",
+    "name": "pure-python-ai-code-reviewer",
+    "displayName": "Pure Python AI Code Reviewer",
     "description": "Lightning-fast AI code review with Pure Python intelligence - No API keys, No LLMs, 100% offline, zero cost",
     "version": "1.0.0",
     "license": "MIT",
@@ -9,16 +9,18 @@
         "name": "Sanyam Kumat"
     },
     "keywords": [
-        "ai",
-        "code-review",
-        "python",
-        "linter",
-        "copilot",
-        "offline",
-        "pure-python",
-        "intelligence",
-        "completion",
-        "suggestions"
+        "pure-python-ai",
+        "offline-code-review",
+        "python-linter",
+        "no-api-keys",
+        "zero-cost-ai",
+        "pep8-compliance",
+        "security-scanner",
+        "performance-analyzer",
+        "copilot-alternative",
+        "static-analysis",
+        "code-quality",
+        "technical-debt"
     ],
     "repository": {
         "type": "git",
