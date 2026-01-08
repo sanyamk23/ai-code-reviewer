@@ -1,8 +1,8 @@
 {
     "name": "pure-python-ai-code-reviewer",
     "displayName": "Pure Python AI Code Reviewer",
-    "description": "Lightning-fast AI code review with embedded Pure Python intelligence - No servers, no setup, 100% offline",
-    "version": "1.0.0",
+    "description": "🚀 EMBEDDED AI: Lightning-fast Python code analysis with zero setup - No servers, no dependencies, 100% offline",
+    "version": "2.0.0",
     "license": "MIT",
     "publisher": "sanyam-kumat",
     "author": {
