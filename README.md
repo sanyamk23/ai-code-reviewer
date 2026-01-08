@@ -60,42 +60,24 @@
 
 ### 📥 Installation
 
-**Option 1: VS Code Marketplace (Recommended)**
-```bash
-# Search for "Pure Python AI Code Reviewer" in VS Code Extensions
-# Or install via command line:
-code --install-extension sanyam-kumat.ai-code-reviewer
-```
+**Install from VS Code Marketplace:**
+- Search "Pure Python AI Code Reviewer" in VS Code Extensions
+- Or install from [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=sanyam-kumat.pure-python-ai-code-reviewer)
 
-**Option 2: Manual Installation**
-```bash
-# Download .vsix from releases
-code --install-extension ai-code-reviewer-1.0.0.vsix
-```
+### ✨ That's It! No Setup Required!
 
-### ⚡ Setup Python Server
+1. **Install the extension** ✅
+2. **Open any Python file** ✅  
+3. **See real-time analysis instantly** ✅
 
-```bash
-# Clone repository (if installing manually)
-git clone https://github.com/sanyamk23/ai-code-reviewer.git
-cd ai-code-reviewer
+## 🎯 **Zero Setup Required!**
 
-# Set up Python environment
-cd python-server
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+**This extension now works completely embedded** - no servers, no configuration, no dependencies!
 
-# Start the server
-python server.py
-```
-
-### 🎉 Start Analyzing
-
-1. Open any Python file in VS Code
-2. See real-time analysis results
-3. Hover over issues for detailed explanations
-4. Use quick fixes for automatic corrections
+- 🚀 **Instant activation** - Works immediately after installation
+- 🔒 **100% offline** - No internet connection needed
+- 💾 **No external dependencies** - Everything built-in
+- ⚡ **Lightning fast** - Embedded TypeScript analysis engine
 
 ## 📊 Analysis Results
 
