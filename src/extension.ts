@@ -22,12 +22,23 @@ export function activate(context: vscode.ExtensionContext) {
   console.log('Pure Python AI Code Reviewer extension is now active');
 
   // Initialize embedded analyzer (no server required!)
-  embeddedAnalyzer = new EmbeddedPythonAnalyzer();
-  console.log('✅ Embedded Python analyzer initialized - no server required!');
+  try {
+    embeddedAnalyzer = new EmbeddedPythonAnalyzer();
+    console.log('✅ Embedded Python analyzer initialized - no server required!');
+  } catch (error) {
+    console.error('❌ Failed to initialize analyzer:', error);
+    vscode.window.showErrorMessage(`Failed to initialize Pure Python AI: ${error}`);
+    return;
+  }
 
   // Create output channel for logging
   outputChannel = vscode.window.createOutputChannel('Pure Python AI Code Reviewer');
   context.subscriptions.push(outputChannel);
+  
+  // Log to output channel
+  outputChannel.appendLine('🚀 Pure Python AI Code Reviewer activated successfully!');
+  outputChannel.appendLine('✅ Embedded analyzer ready - no server required');
+  outputChannel.show();
 
   // Create status bar item
   statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
@@ -41,6 +52,11 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(diagnosticCollection);
 
   // Register commands
+  const testCommand = vscode.commands.registerCommand('aiCodeReviewer.test', () => {
+    vscode.window.showInformationMessage('🎉 Pure Python AI Code Reviewer is working! Extension activated successfully.');
+    outputChannel.appendLine('✅ Test command executed - extension is working!');
+  });
+
   const analyzeFileCommand = vscode.commands.registerCommand('aiCodeReviewer.analyzeFile', () => {
     const editor = vscode.window.activeTextEditor;
     if (editor) {
@@ -56,7 +72,7 @@ export function activate(context: vscode.ExtensionContext) {
     showCodeMetrics();
   });
 
-  context.subscriptions.push(analyzeFileCommand, analyzeWorkspaceCommand, showMetricsCommand);
+  context.subscriptions.push(testCommand, analyzeFileCommand, analyzeWorkspaceCommand, showMetricsCommand);
 
   // Register event listeners
   const onDidSaveDocument = vscode.workspace.onDidSaveTextDocument((document) => {
@@ -107,13 +123,22 @@ function debounceAnalysis(document: vscode.TextDocument) {
 
 async function analyzeDocument(document: vscode.TextDocument) {
   try {
+    console.log('🔍 Starting analysis for:', document.fileName);
+    outputChannel.appendLine(`🔍 Analyzing: ${document.fileName}`);
+    
     statusBarItem.text = "$(sync~spin) Pure Python AI: Analyzing...";
     
     const code = document.getText();
     const filename = document.fileName;
 
+    console.log('📝 Code length:', code.length, 'characters');
+    outputChannel.appendLine(`📝 Code length: ${code.length} characters`);
+
     // Use embedded analyzer - no server required!
     const result = embeddedAnalyzer.analyze(code, filename);
+    
+    console.log('📊 Analysis result:', result);
+    outputChannel.appendLine(`📊 Analysis completed: ${result.findings.length} findings`);
 
     if (result.status === 'success') {
       updateDiagnostics(document, result.findings);
@@ -123,10 +148,17 @@ async function analyzeDocument(document: vscode.TextDocument) {
       const errorCount = result.findings.filter(f => f.severity === 'error').length;
       const warningCount = result.findings.filter(f => f.severity === 'warning').length;
       
+      outputChannel.appendLine(`✅ Analysis complete: ${errorCount} errors, ${warningCount} warnings`);
+      
       if (errorCount > 0 || warningCount > 0) {
-        outputChannel.appendLine(`✅ Embedded Analysis: ${errorCount} errors, ${warningCount} warnings found`);
+        outputChannel.appendLine(`📋 Findings details:`);
+        result.findings.forEach((finding, index) => {
+          outputChannel.appendLine(`  ${index + 1}. Line ${finding.line}: ${finding.message}`);
+        });
       }
     } else {
+      console.error('❌ Analysis failed:', result.error);
+      outputChannel.appendLine(`❌ Analysis failed: ${result.error}`);
       vscode.window.showErrorMessage(`Analysis failed: ${result.error}`);
       statusBarItem.text = "$(error) Pure Python AI: Error";
     }

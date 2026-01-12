@@ -46,28 +46,24 @@
     "contributes": {
         "commands": [
             {
+                "command": "aiCodeReviewer.test",
+                "title": "Pure Python AI: Test Extension",
+                "icon": "$(check)"
+            },
+            {
                 "command": "aiCodeReviewer.analyzeFile",
-                "title": "AI Code Review: Analyze Current File",
+                "title": "Pure Python AI: Analyze Current File",
                 "icon": "$(search)"
             },
             {
                 "command": "aiCodeReviewer.analyzeWorkspace",
-                "title": "AI Code Review: Analyze Workspace",
+                "title": "Pure Python AI: Analyze Workspace",
                 "icon": "$(folder)"
             },
             {
                 "command": "aiCodeReviewer.showMetrics",
-                "title": "AI Code Review: Show Code Metrics",
+                "title": "Pure Python AI: Show Code Metrics",
                 "icon": "$(graph)"
-            },
-            {
-                "command": "aiCodeReviewer.enableAI",
-                "title": "AI Code Review: Setup AI Features",
-                "icon": "$(robot)"
-            },
-            {
-                "command": "aiCodeReviewer.showSuggestionExplanation",
-                "title": "AI Code Review: Show Suggestion Explanation"
             }
         ],
         "menus": {
